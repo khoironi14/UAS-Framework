@@ -40,7 +40,7 @@
                         <td >{{$row->nama_pelanggan}}</td>
                         <td >{{$row->alamat}}</td>
                         <td >{{$row->nomer_hp}}</td>
-                        <td><a href="" class="btn btn-info btn-sm">Edit</a> <a href="/" class="btn btn-danger btn-sm">Hapus</a></td>
+                        <td><a href="/pelanggan/edit/{{$row->id}}" class="btn btn-info btn-sm">Edit</a> <a href="/" class="btn btn-danger btn-sm">Hapus</a></td>
                     </tr>
                     @endforeach
                 </tbody>

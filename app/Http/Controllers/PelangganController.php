@@ -74,7 +74,12 @@ class PelangganController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $edit=Pelanggan::find($id);
+            return view('edit_pelanggan',['edit'=>$edit]);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**
@@ -86,7 +91,18 @@ class PelangganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator=$request->validate([
+            'nama_pelanggan'=>['required'],
+            'alamat'=>['required'],
+            'nomer_hp'=>['required']
+
+        ]);
+        try {
+            Pelanggan::where('id',$id)->update($validator);
+            return redirect('/pelanggan')->with('message','New Pelanggan been Updated');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**

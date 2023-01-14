@@ -23,3 +23,5 @@ Route::get('/beranda',[BerandaController::class,'index']);
 Route::get('/pelanggan',[PelangganController::class,'index']);
 Route::get('/pelanggan/add',[PelangganController::class,'create']);
 Route::post('/pelanggan/store',[PelangganController::class,'store']);
+Route::get('/pelanggan/edit/{id}',[PelangganController::class,'edit']);
+Route::post('/pelanggan/updated/{id}',[PelangganController::class,'updated']);
