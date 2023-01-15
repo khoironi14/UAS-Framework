@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -10,7 +11,7 @@ class AuthController extends Controller
 
         return view('login');
     }
-    public function login(){
+    public function login(Request $request){
 
         $credentials = $request->validate([
             'email' => ['required', 'email:dns'],

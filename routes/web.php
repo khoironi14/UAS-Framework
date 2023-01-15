@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\PelangganController;
 /*
@@ -18,10 +18,11 @@ use App\Http\Controllers\PelangganController;
 Route::get('/', function () {
     return view('login');
 });
-Route::post('/login',[LoginController::class,'validatation']);
+Route::post('/login',[AuthController::class,'login']);
 Route::get('/beranda',[BerandaController::class,'index']);
 Route::get('/pelanggan',[PelangganController::class,'index']);
 Route::get('/pelanggan/add',[PelangganController::class,'create']);
 Route::post('/pelanggan/store',[PelangganController::class,'store']);
 Route::get('/pelanggan/edit/{id}',[PelangganController::class,'edit']);
-Route::post('/pelanggan/updated/{id}',[PelangganController::class,'updated']);
+Route::post('/pelanggan/updated/{id}',[PelangganController::class,'update']);
+Route::delete('/pelanggan/delete/{id}',[PelangganController::class,'destroy']);

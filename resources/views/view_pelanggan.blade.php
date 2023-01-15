@@ -8,10 +8,10 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/pelanggan">Data Pelanggan</a></li>
-
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Data Pelanggan</li>
           </ol>
-        </div><!-- /.col -->
+        </div>
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
@@ -40,7 +40,11 @@
                         <td >{{$row->nama_pelanggan}}</td>
                         <td >{{$row->alamat}}</td>
                         <td >{{$row->nomer_hp}}</td>
-                        <td><a href="/pelanggan/edit/{{$row->id}}" class="btn btn-info btn-sm">Edit</a> <a href="/" class="btn btn-danger btn-sm">Hapus</a></td>
+                        <td><a href="/pelanggan/edit/{{$row->id}}" class="btn btn-info btn-sm">Edit</a> <form action="/pelanggan/delete/{{$row->id}}" method="post" class="d-inline">
+                          @method('delete')
+                          @csrf
+                          <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin akan Hapus Data?')">Hapus</button>
+                      </form></td>
                     </tr>
                     @endforeach
                 </tbody>

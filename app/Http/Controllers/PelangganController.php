@@ -113,6 +113,11 @@ class PelangganController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            Pelanggan::destroy($id);
+            return redirect('/pelanggan')->with('message','Pelanggan been Deleted');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }
