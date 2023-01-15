@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pelanggan;
+use RealRashid\SweetAlert\Facades\Alert;
 class PelangganController extends Controller
 {
     /**
@@ -49,7 +50,8 @@ class PelangganController extends Controller
         try {
             
             Pelanggan::create($validator);
-            return redirect('/pelanggan')->with('message','New Pelanggan been added');
+            Alert::toast('Data Berhasil ditambah');
+            return redirect('/pelanggan');
         } catch (\Throwable $th) {
             return redirect('/pelanggan/add')->with('Something Errors');
         }
@@ -99,9 +101,10 @@ class PelangganController extends Controller
         ]);
         try {
             Pelanggan::where('id',$id)->update($validator);
-            return redirect('/pelanggan')->with('message','New Pelanggan been Updated');
+            return redirect('/pelanggan');
+            Alert::toast('Data Berhasil diupdated');
         } catch (\Throwable $th) {
-            //throw $th;
+            return redirect('/pelanggan/edit')->with('Something Errors');
         }
     }
 
@@ -115,9 +118,10 @@ class PelangganController extends Controller
     {
         try {
             Pelanggan::destroy($id);
-            return redirect('/pelanggan')->with('message','Pelanggan been Deleted');
+            return redirect('/pelanggan');
+            Alert::toast('Data Berhasil dihapus');
         } catch (\Throwable $th) {
-            //throw $th;
+            return redirect('/pelanggan')->with('Something Errors');
         }
     }
 }

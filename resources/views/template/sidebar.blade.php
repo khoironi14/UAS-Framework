@@ -11,7 +11,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
         <div class="info">
-          <a href="#" class="d-block">Roni</a>
+          <a href="#" class="d-block">{{auth()->user()->name}}</a>
         </div>
       </div>
 
@@ -48,9 +48,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/icons.html" class="nav-link">
+                <a href="/user" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Icons</p>
+                  <p>Data Users</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -65,8 +65,6 @@
                   <p>Sliders</p>
                 </a>
               </li>
-             
-             
              
             </ul>
           </li>

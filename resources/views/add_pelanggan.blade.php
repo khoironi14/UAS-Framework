@@ -25,10 +25,10 @@
                     <div class="mb-3">
                       <label for="" class="form-label">Nama Pelanggan</label>
                       <input type="text"
-                        class="form-control @error('name_pelanggan')  is-invalid
+                        class="form-control @error('nama_pelanggan')  is-invalid
                         @enderror" name="nama_pelanggan" id="" aria-describedby="helpId" placeholder="Nama Pelanggan"
                        value="{{old('name_pelanggan')}}">
-                        @error('name_pelanggan')
+                        @error('nama_pelanggan')
                         <div class="invalid-feedback">
                           {{$message}}
                         </div>

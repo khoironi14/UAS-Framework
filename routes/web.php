@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +27,7 @@ Route::post('/pelanggan/store',[PelangganController::class,'store']);
 Route::get('/pelanggan/edit/{id}',[PelangganController::class,'edit']);
 Route::post('/pelanggan/updated/{id}',[PelangganController::class,'update']);
 Route::delete('/pelanggan/delete/{id}',[PelangganController::class,'destroy']);
+Route::get('/user',[UserController::class,'index']);
+Route::get('/user/add',[UserController::class,'create']);
+
+Route::get('/logout',[AuthController::class,'logout']);
