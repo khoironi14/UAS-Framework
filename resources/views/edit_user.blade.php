@@ -20,14 +20,15 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <form action="/user/store" method="post">
+                <form action="/user/updated/{{$edit->id}}" method="post">
+                   
                     @csrf
                     <div class="mb-3">
                       <label for="" class="form-label">Nama User</label>
                       <input type="text"
                         class="form-control @error('name')  is-invalid
                         @enderror" name="name" id="" aria-describedby="helpId" placeholder="Nama Pelanggan"
-                       value="{{old('name')}}">
+                       value="{{old('name',$edit->name)}}">
                         @error('name')
                         <div class="invalid-feedback">
                           {{$message}}
@@ -39,43 +40,27 @@
                         <input type="text"
                           class="form-control @error('email')  is-invalid
                           @enderror" name="email" id="" aria-describedby="helpId" placeholder="Input Email"
-                          value="{{old('email')}}">
+                          value="{{old('email',$edit->email)}}">
                           @error('email')
                           <div class="invalid-feedback">
                             {{$message}}
                           </div>
                           @enderror
                       </div>
-                      <div class="mb-3">
-                        <label for="" class="form-label">Password</label>
-                        <input type="password"
-                          class="form-control @error('password')  is-invalid
-                          @enderror" name="password" id="" aria-describedby="helpId" placeholder="Input Password"
-                          value="{{old('password')}}">
-                          @error('password')
-                          <div class="invalid-feedback">
-                            {{$message}}
-                          </div>
-                          @enderror
-                      </div>
-                      <div class="mb-3">
-                        <label for="" class="form-label">Konfirmasi Password</label>
-                        <input type="password"
-                          class="form-control @error('konfirmasi')  is-invalid
-                          @enderror" name="konfirmasi" id="" aria-describedby="helpId" placeholder="Konfirmasi Password"
-                          value="{{old('konfirmasi')}}">
-                          @error('konfirmasi')
-                          <div class="invalid-feedback">
-                            {{$message}}
-                          </div>
-                          @enderror
-                      </div>
+                     
+                     
                       <div class="mb-3">
                         <label for="" class="form-label">Role</label>
                        <select name="role" id="" class="form-control">
-                        <option value="1">Admin</option>
-                        <option value="2">Kasir</option>
-                        <option value="3">Pelanggan</option>
+                        <option value="1" @if ($edit->role==1)
+                           {{"selected";}} 
+                        @endif>Admin</option>
+                        <option value="2" @if ($edit->role==2)
+                            {{"selected";}} 
+                         @endif>Kasir</option>
+                        <option value="3" @if ($edit->role==3)
+                            {{"selected";}} 
+                         @endif>Pelanggan</option>
                        </select>
                       </div>
                       <div class="d-grid gap-2">

@@ -29,5 +29,7 @@ Route::post('/pelanggan/updated/{id}',[PelangganController::class,'update']);
 Route::delete('/pelanggan/delete/{id}',[PelangganController::class,'destroy']);
 Route::get('/user',[UserController::class,'index']);
 Route::get('/user/add',[UserController::class,'create']);
-
+Route::post('/user/store',[UserController::class,'store']);
+Route::get('/user/edit/{id}',[UserController::class,'edit']);
+Route::post('/user/updated/{id}',[UserController::class,'update']);
 Route::get('/logout',[AuthController::class,'logout']);

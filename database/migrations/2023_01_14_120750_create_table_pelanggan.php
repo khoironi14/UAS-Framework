@@ -18,6 +18,7 @@ class CreateTablePelanggan extends Migration
             $table->string('nama_pelanggan');
             $table->string('alamat');
             $table->string('nomer_hp');
+            $table->int('created_by');
             $table->timestamps();
         });
     }

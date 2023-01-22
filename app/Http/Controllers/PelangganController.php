@@ -44,7 +44,9 @@ class PelangganController extends Controller
         $validator=$request->validate([
             'nama_pelanggan'=>['required'],
             'alamat'=>['required'],
-            'nomer_hp'=>['required']
+            'nomer_hp'=>['required'],
+            'email'=>['required|unique:users'],
+           // 'password'=>['required',Password::min(8)]
 
         ]);
         try {
