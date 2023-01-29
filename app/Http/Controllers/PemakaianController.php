@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pemakaian;
 use App\Models\Pelanggan;
 use RealRashid\SweetAlert\Facades\Alert;
-class PelangganController extends Controller
+class PemakaianController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +16,11 @@ class PelangganController extends Controller
     public function index()
     {
         try {
-            $pelanggan=Pelanggan::get();
-            return view('view_pelanggan',['pelanggan'=>$pelanggan]);
+            $pemakaian=Pemakaian::get();
+            return view('view_pemakain',['pemakaian'=>$pemakaian]);
         } catch (\Throwable $th) {
-            
+            //throw $th;
         }
-        
     }
 
     /**
@@ -30,7 +30,8 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        return view('add_pelanggan');
+        $pelanggan=Pelanggan::get();
+        return view('add_pemakaian',['pelanggan'=>$pelanggan]);
     }
 
     /**
@@ -42,20 +43,17 @@ class PelangganController extends Controller
     public function store(Request $request)
     {
         $validator=$request->validate([
-            'nama_pelanggan'=>['required'],
-            'alamat'=>['required'],
-            'nomer_hp'=>['required'],
-            'email'=>['required|unique:users'],
-           // 'password'=>['required',Password::min(8)]
+            'pelanggan_id'=>['required'],
+            'jumlah_pakai'=>['required'],
+            'bulan'=>['required']
 
         ]);
         try {
-            
-            Pelanggan::create($validator);
+            Pemakaian::create($validator);
             Alert::toast('Data Berhasil ditambah');
-            return redirect('/pelanggan');
+            return redirect('/pemakaian');
         } catch (\Throwable $th) {
-            return redirect('/pelanggan/add')->with('Something Errors');
+            //throw $th;
         }
     }
 
@@ -78,12 +76,7 @@ class PelangganController extends Controller
      */
     public function edit($id)
     {
-        try {
-            $edit=Pelanggan::find($id);
-            return view('edit_pelanggan',['edit'=>$edit]);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        //
     }
 
     /**
@@ -95,30 +88,17 @@ class PelangganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator=$request->validate([
-            'nama_pelanggan'=>['required'],
-            'alamat'=>['required'],
-            'nomer_hp'=>['required']
-
-        ]);
-        try {
-            Pelanggan::where('id',$id)->update($validator);
-            Alert::toast('Data Berhasil diupdated');
-            return redirect('/pelanggan');
-           
-        } catch (\Throwable $th) {
-            return redirect('/pelanggan/edit')->with('Something Errors');
-        }
+        //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
-        try {
-            Pelanggan::destroy($id);
-            Alert::toast('Data Berhasil dihapus');
-            return redirect('/pelanggan');
-            
-        } catch (\Throwable $th) {
-            return redirect('/pelanggan')->with('Something Errors');
-        }
+        //
     }
 }

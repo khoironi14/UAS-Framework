@@ -4,12 +4,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Data User</h1>
+          <h1 class="m-0">Data Pemakaian</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Data User</li>
+            <li class="breadcrumb-item active">Data Pemakaian</li>
           </ol>
         </div>
       </div><!-- /.row -->
@@ -20,7 +20,7 @@
 <div class="row">
     <div class="col-lg-12">
       <div class="card">
-        <div class="card-header"> <a href="/tarif/add" class="btn btn-success btn-sm float-right">Tambah Tarif</a></div>
+        <div class="card-header"> <a href="/pemakaian/add" class="btn btn-success btn-sm float-right">Tambah Pemakaian</a></div>
         <div class="card-body">
           @include('sweetalert::alert')
           @if(session()->has('message'))
@@ -32,17 +32,21 @@
             <table class="table table-bordered" id="table">
                 <thead>
                     <tr>
-                        <th scope="col">Tarif</th>
+                        <th>Pelanggan</th>
+                        <th>Bulan</th>
+                        <th scope="col">Jumlah Pemakaian</th>
                        
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($tarif as $row )
+                    @foreach ($pemakaian as $row )
                         
                   
                     <tr class="">
-                        <td >{{$row->tarif}}</td>
+                        <td></td>
+                        <td>{{$row->bulan}}</td>
+                        <td >{{$row->jumlah_pakai}}</td>
                        
                         <td><a href="/user/edit/{{$row->id}}" class="btn btn-info btn-sm">Edit</a> <form action="/user/delete/{{$row->id}}" method="post" class="d-inline">
                           @method('delete')

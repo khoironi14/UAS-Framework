@@ -23,11 +23,11 @@
         <div class="card-header"> <a href="/pelanggan/add" class="btn btn-success btn-sm float-right">Tambah Pelanggan</a></div>
         <div class="card-body">
           @include('sweetalert::alert')
-          @if(session()->has('message'))
+          {{-- @if(session()->has('message'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
               {{session('message')}}
             </div>
-          @endif
+          @endif --}}
         <div class="table-responsive">
             <table class="table table-bordered" id="table">
                 <thead>

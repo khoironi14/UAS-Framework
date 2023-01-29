@@ -54,15 +54,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/buttons.html" class="nav-link">
+                <a href="/tarif" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Buttons</p>
+                  <p>Tarif</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/sliders.html" class="nav-link">
+                <a href="/pemakaian" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Sliders</p>
+                  <p>Input Pemakaian</p>
                 </a>
               </li>
              
