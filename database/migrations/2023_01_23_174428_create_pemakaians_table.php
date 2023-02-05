@@ -20,6 +20,7 @@ class CreatePemakaiansTable extends Migration
             $table->integer('jumlah_pakai');
             $table->integer('jumlah_pakai_sebelumnya');
             $table->integer('tahun');
+            $table->integer('status_pembayaran')->null();
             //$table->integer('created_by');
             $table->timestamps();
         });

@@ -17,7 +17,10 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        $pembayaran=Pembayaran::join('table_pelanggan','pembayarans.pelanggan_id','=','table_pelanggan.id')->get();
+        $pembayaran=Pembayaran::join('table_pelanggan','pembayarans.pelanggan_id','=','table_pelanggan.id')
+        ->select('pembayarans.id','nama_pelanggan','bulan','jumlah_bayar')
+        ->get();
+
         return view('view_pembayaran',['pembayaran'=>$pembayaran]);
     }
 
@@ -50,7 +53,7 @@ class PembayaranController extends Controller
 
         ]);
         $pembayaran=Pembayaran::create($validator);
-
+        $update=Pemakaian::where(['pelanggan_id'=>$request->pelanggan_id,'bulan'=>$request->bulan])->update(['status_pembayaran'=>1]);
         Alert::toast('Data Berhasil ditambah');
             return redirect('/pembayaran');
     }

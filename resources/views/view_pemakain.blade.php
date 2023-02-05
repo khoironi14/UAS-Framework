@@ -23,11 +23,7 @@
         <div class="card-header"> <a href="/pemakaian/add" class="btn btn-success btn-sm float-right">Tambah Pemakaian</a></div>
         <div class="card-body">
           @include('sweetalert::alert')
-          @if(session()->has('message'))
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-              {{session('message')}}
-            </div>
-          @endif
+
         <div class="table-responsive">
 
             <table class="table table-bordered" id="table">

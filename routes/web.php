@@ -47,5 +47,6 @@ Route::get('/pembayaran',[PembayaranController::class,'index']);
 Route::get('/pembayaran/add',[PembayaranController::class,'create']);
 Route::get('/pembayaran/show/{id}/{bulan}',[PembayaranController::class,'show']);
 Route::post('/pembayaran/store',[PembayaranController::class,'store']);
+Route::delete('/pembayaran/delete/{id}',[PembayaranController::class,'destroy']);
 Route::delete('/pemakaian/delete/{id}',[PemakaianController::class,'destroy']);
 Route::get('/logout',[AuthController::class,'logout']);

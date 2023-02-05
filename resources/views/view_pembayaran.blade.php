@@ -49,7 +49,7 @@
                         <td>{{$row->bulan}}</td>
                         <td >{{$row->jumlah_bayar}}</td>
 
-                        <td> <form action="/pemakaian/delete/{{$row->id}}" method="post" class="d-inline">
+                        <td> <form action="/pembayaran/delete/{{$row->id}}" method="post" class="d-inline">
                           @method('delete')
                           @csrf
                           <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin akan Hapus Data?')">Hapus</button>
