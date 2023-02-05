@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableTarif extends Migration
+class CreatePembayaransTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTableTarif extends Migration
      */
     public function up()
     {
-        Schema::create('table_tarif', function (Blueprint $table) {
+        Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->integer('tarif');
-           // $table->int('created_by');
-            
+            $table->integer('pelanggan_id');
+            $table->string('bulan');
+            $table->date('tanggal_bayar');
+            $table->integer('jumlah_bayar');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateTableTarif extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_tarif');
+        Schema::dropIfExists('pembayarans');
     }
 }

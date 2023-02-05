@@ -23,11 +23,7 @@
         <div class="card-header"> <a href="/user/add" class="btn btn-success btn-sm float-right">Tambah User</a></div>
         <div class="card-body">
           @include('sweetalert::alert')
-          @if(session()->has('message'))
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-              {{session('message')}}
-            </div>
-          @endif
+
         <div class="table-responsive">
             <table class="table table-bordered" id="table">
                 <thead>
@@ -40,12 +36,20 @@
                 </thead>
                 <tbody>
                     @foreach ($user as $row )
-                        
-                  
+
+
                     <tr class="">
                         <td >{{$row->name}}</td>
                         <td >{{$row->email}}</td>
-                        <td ></td>
+                        <td >@if ($row->role==1)
+                            Admin
+                            @elseif ($row->role==2)
+                            Kasir
+                        @elseif($row->role==3)
+                            Pelanggan
+                            @else
+                            Pencatat Meter
+                        @endif</td>
                         <td><a href="/user/edit/{{$row->id}}" class="btn btn-info btn-sm">Edit</a> <form action="/user/delete/{{$row->id}}" method="post" class="d-inline">
                           @method('delete')
                           @csrf
@@ -56,7 +60,7 @@
                 </tbody>
             </table>
         </div>
-        
+
 
 
         </div>

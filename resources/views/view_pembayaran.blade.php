@@ -4,12 +4,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Data Pemakaian</h1>
+          <h1 class="m-0">Data Pembayaran</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Data Pemakaian</li>
+            <li class="breadcrumb-item active">Data Pembayaran</li>
           </ol>
         </div>
       </div><!-- /.row -->
@@ -20,7 +20,7 @@
 <div class="row">
     <div class="col-lg-12">
       <div class="card">
-        <div class="card-header"> <a href="/pemakaian/add" class="btn btn-success btn-sm float-right">Tambah Pemakaian</a></div>
+        <div class="card-header"> <a href="/pembayaran/add" class="btn btn-success btn-sm float-right">Tambah Pemakaian</a></div>
         <div class="card-body">
           @include('sweetalert::alert')
           @if(session()->has('message'))
@@ -35,21 +35,21 @@
                     <tr>
                         <th>Pelanggan</th>
                         <th>Bulan</th>
-                        <th scope="col">Jumlah Pemakaian</th>
+                        <th scope="col">Jumlah Bayar</th>
 
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pemakaian as $row )
+                    @foreach ($pembayaran as $row )
 
 
                     <tr class="">
                         <td>{{$row->nama_pelanggan}}</td>
                         <td>{{$row->bulan}}</td>
-                        <td >{{$row->jumlah_pakai}}</td>
+                        <td >{{$row->jumlah_bayar}}</td>
 
-                        <td><a href="/pemakaian/edit/{{$row->id}}" class="btn btn-info btn-sm">Edit</a> <form action="/pemakaian/delete/{{$row->id}}" method="post" class="d-inline">
+                        <td> <form action="/pemakaian/delete/{{$row->id}}" method="post" class="d-inline">
                           @method('delete')
                           @csrf
                           <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Yakin akan Hapus Data?')">Hapus</button>

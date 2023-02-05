@@ -21,7 +21,7 @@
         <div class="card">
             <div class="card-body">
                 <form action="/user/updated/{{$edit->id}}" method="post">
-                   
+
                     @csrf
                     <div class="mb-3">
                       <label for="" class="form-label">Nama User</label>
@@ -47,20 +47,22 @@
                           </div>
                           @enderror
                       </div>
-                     
-                     
+
+
                       <div class="mb-3">
                         <label for="" class="form-label">Role</label>
                        <select name="role" id="" class="form-control">
                         <option value="1" @if ($edit->role==1)
-                           {{"selected";}} 
+                           {{"selected";}}
                         @endif>Admin</option>
                         <option value="2" @if ($edit->role==2)
-                            {{"selected";}} 
+                            {{"selected";}}
                          @endif>Kasir</option>
                         <option value="3" @if ($edit->role==3)
-                            {{"selected";}} 
+                            {{"selected";}}
                          @endif>Pelanggan</option>
+                         <option value="4" @if ($edit->role==4)
+                            {{"selected";}} @endif>Catat Meter</option>
                        </select>
                       </div>
                       <div class="d-grid gap-2">

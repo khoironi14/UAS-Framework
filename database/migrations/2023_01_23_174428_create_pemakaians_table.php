@@ -16,9 +16,11 @@ class CreatePemakaiansTable extends Migration
         Schema::create('pemakaians', function (Blueprint $table) {
             $table->id();
             $table->integer('pelanggan_id');
-            $table->integer('bulan');
+            $table->string('bulan');
             $table->integer('jumlah_pakai');
-            $table->integer('created_by');
+            $table->integer('jumlah_pakai_sebelumnya');
+            $table->integer('tahun');
+            //$table->integer('created_by');
             $table->timestamps();
         });
     }

@@ -97,7 +97,7 @@ class UserController extends Controller
     {
         $validator=$request->validate([
             'name'=>['required'],
-            'email'=>['required','unique:users,email,'.$this->user()->id.''],
+            'email'=>['required','unique:users,email,'.$id.''],
             'role'=>['required']
 
         ]);
@@ -106,14 +106,15 @@ class UserController extends Controller
         Alert::toast('Data Berhasil diupdated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+        try {
+            User::destroy($id);
+            Alert::toast('Data Berhasil dihapus');
+            return redirect('/user');
+        } catch (\Throwable $th) {
+            return redirect('/user')->with('Something Errors');
+        }
     }
 }

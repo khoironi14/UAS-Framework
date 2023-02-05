@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pemakaian;
 use App\Models\Pelanggan;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Carbon;
 class PemakaianController extends Controller
 {
     /**
@@ -16,10 +17,12 @@ class PemakaianController extends Controller
     public function index()
     {
         try {
-            $pemakaian=Pemakaian::get();
+            $pemakaian=Pemakaian::join('table_pelanggan','pemakaians.pelanggan_id','=','table_pelanggan.id')
+            ->select('pemakaians.id','nama_pelanggan','bulan','jumlah_pakai')
+            ->get();
             return view('view_pemakain',['pemakaian'=>$pemakaian]);
         } catch (\Throwable $th) {
-            //throw $th;
+            return redirect('/pemakaian')->with('Something Errors');
         }
     }
 
@@ -45,10 +48,16 @@ class PemakaianController extends Controller
         $validator=$request->validate([
             'pelanggan_id'=>['required'],
             'jumlah_pakai'=>['required'],
-            'bulan'=>['required']
+            'bulan'=>['required'],
+            'tahun'=>['required']
+
 
         ]);
+
         try {
+           // $validator['tahun'] = date('Y');
+
+
             Pemakaian::create($validator);
             Alert::toast('Data Berhasil ditambah');
             return redirect('/pemakaian');
@@ -76,7 +85,14 @@ class PemakaianController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $pelanggan=Pelanggan::get();
+            $edit=Pemakaian::find($id);
+            return view('edit_pemakaian',['edit'=>$edit,'pelanggan'=>$pelanggan]);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**
@@ -88,7 +104,15 @@ class PemakaianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator=$request->validate([
+            'pelanggan_id'=>['required'],
+            'jumlah_pakai'=>['required'],
+            'bulan'=>['required']
+
+        ]);
+        $edit=Pemakaian::where('id',$id)->update($validator);
+        Alert::toast('Data Berhasil diupdate');
+        return redirect('/pemakaian');
     }
 
     /**
@@ -99,6 +123,8 @@ class PemakaianController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pemakaian::destroy($id);
+        Alert::toast('Data Berhasil dihapus');
+        return redirect('/pemakaian');
     }
 }

@@ -76,6 +76,7 @@
                         <option value="1">Admin</option>
                         <option value="2">Kasir</option>
                         <option value="3">Pelanggan</option>
+                        <option value="4">Catat Meter</option>
                        </select>
                       </div>
                       <div class="d-grid gap-2">

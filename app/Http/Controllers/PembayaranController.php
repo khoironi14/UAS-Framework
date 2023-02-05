@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pembayaran;
+use App\Models\Pemakaian;
+use App\Models\Pelanggan;
 use App\Models\Tarif;
 use RealRashid\SweetAlert\Facades\Alert;
-
-class TarifController extends Controller
+class PembayaranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +17,8 @@ class TarifController extends Controller
      */
     public function index()
     {
-        try {
-            $tarif=Tarif::get();
-            return view('view_tarif',['tarif'=>$tarif]);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        $pembayaran=Pembayaran::join('table_pelanggan','pembayarans.pelanggan_id','=','table_pelanggan.id')->get();
+        return view('view_pembayaran',['pembayaran'=>$pembayaran]);
     }
 
     /**
@@ -30,7 +28,9 @@ class TarifController extends Controller
      */
     public function create()
     {
-
+        $tarif=Tarif::first();
+        $pelanggan=Pelanggan::get();
+        return view('add_pembayaran',['pelanggan'=>$pelanggan,'tarif'=>$tarif]);
     }
 
     /**
@@ -41,20 +41,18 @@ class TarifController extends Controller
      */
     public function store(Request $request)
     {
-        $tarif=Tarif::first();
-        if($tarif !=null){
+        $validator=$request->validate([
+            'pelanggan_id'=>['required'],
+            'jumlah_bayar'=>['required'],
+            'bulan'=>['required'],
+            'tanggal_bayar'=>['required']
 
-            $tarif->id=$tarif->id;
-            $tarif->tarif=$request->tarif;
-            $tarif->save();
-            Alert::toast('Data Berhasil diupdated');
-            return redirect('/tarif');
-        }else{
 
-            Tarif::create(['tarif'=>$request->tarif]);
-            Alert::toast('Data Berhasil disimpan');
-            return redirect('/tarif');
-        }
+        ]);
+        $pembayaran=Pembayaran::create($validator);
+
+        Alert::toast('Data Berhasil ditambah');
+            return redirect('/pembayaran');
     }
 
     /**
@@ -63,9 +61,10 @@ class TarifController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,$bulan)
     {
-        //
+        $pemakaian=Pemakaian::where(['pelanggan_id'=>$id,'bulan'=>$bulan])->first();
+        return $pemakaian;
     }
 
     /**
@@ -99,6 +98,8 @@ class TarifController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pembayaran::destroy($id);
+        Alert::toast('Data Berhasil dihapus');
+            return redirect('/pembayaran');
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TarifController;
 use App\Http\Controllers\PemakaianController;
+use App\Http\Controllers\PembayaranController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +37,15 @@ Route::get('/user/edit/{id}',[UserController::class,'edit']);
 Route::post('/user/updated/{id}',[UserController::class,'update']);
 Route::delete('/user/delete/{id}',[UserController::class,'destroy']);
 Route::get('/tarif',[TarifController::class,'index']);
+Route::post('/tarif/store',[TarifController::class,'store']);
 Route::get('/pemakaian',[PemakaianController::class,'index']);
 Route::get('/pemakaian/add',[PemakaianController::class,'create']);
 Route::post('/pemakaian/store',[PemakaianController::class,'store']);
+Route::get('/pemakaian/edit/{id}',[PemakaianController::class,'edit']);
+Route::put('/pemakaian/update/{id}',[PemakaianController::class,'update']);
+Route::get('/pembayaran',[PembayaranController::class,'index']);
+Route::get('/pembayaran/add',[PembayaranController::class,'create']);
+Route::get('/pembayaran/show/{id}/{bulan}',[PembayaranController::class,'show']);
+Route::post('/pembayaran/store',[PembayaranController::class,'store']);
+Route::delete('/pemakaian/delete/{id}',[PemakaianController::class,'destroy']);
 Route::get('/logout',[AuthController::class,'logout']);
